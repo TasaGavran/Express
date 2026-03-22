@@ -11,6 +11,18 @@ npm run dev
 
 **Ne otvarajte `dist/index.html` dvoklikom** u Exploreru — JavaScript moduli često ne rade preko `file://`, pa je stranica bela. Uvek koristite `npm run dev` ili `npm run preview`.
 
+### Live Server (ekstenzija u Cursor/VS Code)
+
+1. `npm run build` (da se osveži `dist/`).
+2. U podešavanjima je **`liveServer.settings.root`** = `dist` (folder `Express` kao projekat) ili `Express/dist` (ako je otvoren ceo `PlaywrightMCP`).
+3. Kliknite **Go Live** — otvara se sajt sa ispravnim putanjama.
+
+Brza varijanta iz terminala (isti efekat kao mali server nad `dist`):
+
+```bash
+npm run live
+```
+
 ## Produkcijski build
 
 ```bash
