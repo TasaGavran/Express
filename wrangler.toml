@@ -1,0 +1,3 @@
+# Opciono za Wrangler CLI (Pages deploy). Dashboard ne zahteva ovaj fajl.
+name = "express-restoran"
+compatibility_date = "2025-03-01"
