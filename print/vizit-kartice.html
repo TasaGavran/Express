@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Express — vizit kartice (štampa)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #14110e;
+        --gold: #c9a227;
+        --gold-dim: #8a7019;
+        --cream: #f7f2ea;
+        --card-w: 85mm;
+        --card-h: 55mm;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Source Sans 3", system-ui, sans-serif;
+        color: var(--ink);
+        background: #c4c2bd;
+        padding: 1.5rem;
+      }
+
+      .toolbar {
+        max-width: 48rem;
+        margin: 0 auto 2rem;
+        padding: 1.25rem 1.5rem;
+        background: var(--cream);
+        border-radius: 6px;
+        border: 1px solid rgba(20, 17, 14, 0.12);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      }
+
+      .toolbar h1 {
+        margin: 0 0 0.5rem;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .toolbar p {
+        margin: 0 0 1rem;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: #444;
+      }
+
+      .toolbar label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--gold-dim);
+        margin-bottom: 0.35rem;
+      }
+
+      .toolbar input[type="url"] {
+        width: 100%;
+        max-width: 36rem;
+        padding: 0.5rem 0.65rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 0.95rem;
+      }
+
+      .toolbar button {
+        margin-top: 0.75rem;
+        margin-right: 0.5rem;
+        padding: 0.5rem 1rem;
+        font-family: inherit;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border-radius: 4px;
+        border: none;
+        background: var(--gold);
+        color: var(--ink);
+      }
+
+      .toolbar button.secondary {
+        background: transparent;
+        border: 1px solid var(--ink);
+      }
+
+      .preview-label {
+        text-align: center;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #555;
+        margin: 2rem 0 0.75rem;
+      }
+
+      .preview-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+
+      /* Jedna kartica */
+      .card {
+        width: var(--card-w);
+        height: var(--card-h);
+        background: var(--cream);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+        border: 0.35pt solid rgba(20, 17, 14, 0.15);
+      }
+
+      .card--front {
+        padding: 6mm 5mm 4.5mm 5.5mm;
+        padding-top: 7mm;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 3mm;
+      }
+
+      .card--front::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2.5mm;
+        background: linear-gradient(90deg, var(--gold) 0%, var(--gold-dim) 100%);
+      }
+
+      .card--front .front-col-text {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-self: stretch;
+        padding-top: 0;
+      }
+
+      .card--front .brand h2 {
+        margin: 0;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 15pt;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        line-height: 1;
+        color: var(--ink);
+      }
+
+      .card--front .brand p {
+        margin: 1mm 0 0;
+        font-size: 7.5pt;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--gold-dim);
+      }
+
+      .card--front .tagline {
+        margin: 0;
+        padding-top: 3mm;
+        font-size: 6.5pt;
+        line-height: 1.35;
+        color: #3d3833;
+      }
+
+      .card--front .front-col-qr {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 23mm;
+      }
+
+      .card--front .qr-wrap {
+        width: 22mm;
+        height: 22mm;
+        background: #fff;
+        padding: 1mm;
+        border: 0.5pt solid rgba(20, 17, 14, 0.12);
+      }
+
+      .card--front .qr-wrap img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .card--front .qr-caption {
+        font-size: 5.5pt;
+        text-align: center;
+        color: #666;
+        margin-top: 0.8mm;
+        line-height: 1.2;
+      }
+
+      .card--back {
+        padding: 5mm 5.5mm;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .card--back::after {
+        content: "";
+        position: absolute;
+        bottom: 4mm;
+        left: 5.5mm;
+        right: 5.5mm;
+        height: 0.35pt;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        opacity: 0.6;
+      }
+
+      .card--back h3 {
+        margin: 0;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 12pt;
+        font-weight: 700;
+        color: var(--ink);
+      }
+
+      .card--back .lines {
+        font-size: 7.5pt;
+        line-height: 1.55;
+        color: #2c2824;
+      }
+
+      .card--back .lines strong {
+        font-weight: 600;
+        color: var(--ink);
+        min-width: 8mm;
+        display: inline-block;
+      }
+
+      .card--back .footer-note {
+        font-size: 6pt;
+        color: var(--gold-dim);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-top: auto;
+        padding-top: 2mm;
+      }
+
+      /* Štampa: 2 kolone × 5 redova na A4 */
+      .print-sheet {
+        display: none;
+      }
+
+      @media print {
+        body {
+          background: #fff;
+          padding: 0;
+        }
+
+        .no-print {
+          display: none !important;
+        }
+
+        .print-sheet {
+          display: block;
+          page-break-after: always;
+        }
+
+        .print-sheet:last-of-type {
+          page-break-after: auto;
+        }
+
+        .print-grid {
+          display: grid;
+          grid-template-columns: var(--card-w) var(--card-w);
+          grid-auto-rows: var(--card-h);
+          gap: 0;
+          justify-content: center;
+          padding: 8.5mm 10mm;
+        }
+
+        .print-grid .card {
+          box-shadow: none;
+          border: 0.25pt solid #ccc;
+          page-break-inside: avoid;
+        }
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar no-print">
+      <h1>Express — vizit kartice</h1>
+      <p>
+        Unesite tačan URL vašeg sajta (npr. Cloudflare Pages). QR se osvežava automatski. Štampajte prvo list
+        „prednja“, zatim okrenite papir i štampajte „zadnja“ za dupleks, ili koristite jednostrano.
+      </p>
+      <label for="site-url">Adresa sajta za QR kod</label>
+      <input id="site-url" type="url" placeholder="https://express-restoran.pages.dev" spellcheck="false" />
+      <div>
+        <button type="button" id="btn-qr">Osveži QR</button>
+        <button type="button" id="btn-print" class="secondary">Štampaj oba lista</button>
+      </div>
+    </div>
+
+    <p class="preview-label no-print">Pregled — prednja strana</p>
+    <div class="preview-row no-print">
+      <article class="card card--front" id="sample-front">
+        <div class="front-col-text">
+          <div class="brand">
+            <h2>Express</h2>
+            <p>Restoran · Jagodina</p>
+          </div>
+          <p class="tagline">Brza kuvana jela, domaća kuhinja, ketering i dostava.</p>
+        </div>
+        <div class="front-col-qr">
+          <div class="qr-wrap">
+            <img id="qr-front" alt="QR kod ka sajtu" width="200" height="200" />
+          </div>
+          <span class="qr-caption">Skenirajte za sajt</span>
+        </div>
+      </article>
+    </div>
+
+    <p class="preview-label no-print">Pregled — zadnja strana</p>
+    <div class="preview-row no-print">
+      <article class="card card--back">
+        <h3>Express</h3>
+        <div class="lines">
+          <div><strong>Adresa</strong> Maksima Gorkog 2, 35000 Jagodina</div>
+          <div><strong>Tel.</strong> 035 250 250</div>
+          <div><strong>E-pošta</strong> expressrestoran@gmail.com</div>
+        </div>
+        <p class="footer-note">Kuvana jela · Poneti · Dostava</p>
+      </article>
+    </div>
+
+    <!-- Štampa: 10× prednja -->
+    <section class="print-sheet" aria-hidden="true">
+      <div class="print-grid" id="grid-front"></div>
+    </section>
+    <!-- Štampa: 10× zadnja -->
+    <section class="print-sheet" aria-hidden="true">
+      <div class="print-grid" id="grid-back"></div>
+    </section>
+
+    <template id="tpl-front">
+      <article class="card card--front">
+        <div class="front-col-text">
+          <div class="brand">
+            <h2>Express</h2>
+            <p>Restoran · Jagodina</p>
+          </div>
+          <p class="tagline">Brza kuvana jela, domaća kuhinja, ketering i dostava.</p>
+        </div>
+        <div class="front-col-qr">
+          <div class="qr-wrap">
+            <img class="qr-img" alt="" width="200" height="200" />
+          </div>
+          <span class="qr-caption">Skenirajte za sajt</span>
+        </div>
+      </article>
+    </template>
+
+    <template id="tpl-back">
+      <article class="card card--back">
+        <h3>Express</h3>
+        <div class="lines">
+          <div><strong>Adresa</strong> Maksima Gorkog 2, 35000 Jagodina</div>
+          <div><strong>Tel.</strong> 035 250 250</div>
+          <div><strong>E-pošta</strong> expressrestoran@gmail.com</div>
+        </div>
+        <p class="footer-note">Kuvana jela · Poneti · Dostava</p>
+      </article>
+    </template>
+
+    <script>
+      (function () {
+        var DEFAULT_URL = "https://example.com";
+        var input = document.getElementById("site-url");
+        var qrFront = document.getElementById("qr-front");
+        var gridFront = document.getElementById("grid-front");
+        var gridBack = document.getElementById("grid-back");
+        var tplFront = document.getElementById("tpl-front");
+        var tplBack = document.getElementById("tpl-back");
+
+        function qrSrc(url) {
+          var enc = encodeURIComponent(url.trim() || DEFAULT_URL);
+          return (
+            "https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&color=14110e&bgcolor=ffffff&data=" +
+            enc
+          );
+        }
+
+        function applyQr(url) {
+          var src = qrSrc(url);
+          qrFront.src = src;
+          gridFront.querySelectorAll(".qr-img").forEach(function (img) {
+            img.src = src;
+          });
+        }
+
+        function fillGrids() {
+          var url = input.value || DEFAULT_URL;
+          gridFront.innerHTML = "";
+          gridBack.innerHTML = "";
+          for (var i = 0; i < 10; i++) {
+            gridFront.appendChild(tplFront.content.cloneNode(true));
+            gridBack.appendChild(tplBack.content.cloneNode(true));
+          }
+          applyQr(url);
+        }
+
+        function refresh() {
+          fillGrids();
+        }
+
+        document.getElementById("btn-qr").addEventListener("click", refresh);
+        document.getElementById("btn-print").addEventListener("click", function () {
+          refresh();
+          window.print();
+        });
+
+        input.addEventListener("change", refresh);
+        input.addEventListener("input", function () {
+          applyQr(input.value);
+        });
+
+        fillGrids();
+        applyQr(input.value || DEFAULT_URL);
+      })();
+    </script>
+  </body>
+</html>
