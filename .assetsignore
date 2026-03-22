@@ -1,0 +1,3 @@
+# Ne šalji ovo kao javne statičke fajlove (koren = assets directory)
+node_modules/
+.git/
