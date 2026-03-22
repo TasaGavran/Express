@@ -1,4 +1,4 @@
-name = "express-restoran"
+name = "express"
 compatibility_date = "2025-03-01"
 
 # Statički sajt (HTML/CSS/JS/images) — bez Worker skripte
