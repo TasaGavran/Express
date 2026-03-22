@@ -26,4 +26,4 @@ U folderu `print/`:
 - `vizit-prednja.svg` — prednja strana (85 × 55 mm)
 - `vizit-zadnja.svg` — zadnja strana sa QR ka [https://express.opetmilosdinic.workers.dev/](https://express.opetmilosdinic.workers.dev/)
 
-QR u SVG-u učitava sliku sa javnog API-ja; za štampu otvori fajl u pregledaču uz internet. Za potpuno oflajn rad ugradi PNG QR u `vizit-zadnja.svg` umesto `<image href="...">`.
+QR na `vizit-zadnja.svg` je ugrađen kao PNG (base64) — radi i bez interneta. Ako zamenite domen sajta, generišite novi QR za isti URL i zamenite `href="data:image/png;base64,..."` u tom fajlu.
