@@ -2,7 +2,7 @@
   "name": "express-restoran-jagodina",
   "private": true,
   "scripts": {
-    "dev": "live-server --port=5500 --open=/ --watch=."
+    "dev": "live-server --port=5500 --open=/ --watch=. --ignore=node_modules"
   },
   "devDependencies": {
     "live-server": "^1.2.2"
