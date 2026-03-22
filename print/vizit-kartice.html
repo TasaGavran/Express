@@ -124,13 +124,13 @@
       }
 
       .card--front {
-        padding: 6mm 5mm 4.5mm 5.5mm;
+        padding: 6mm 5mm 3.5mm 5mm;
         padding-top: 7mm;
         display: flex;
-        flex-direction: row;
-        align-items: flex-end;
+        flex-direction: column;
+        align-items: stretch;
         justify-content: space-between;
-        gap: 3mm;
+        gap: 1mm;
       }
 
       .card--front::before {
@@ -144,13 +144,8 @@
       }
 
       .card--front .front-col-text {
-        flex: 1;
-        min-width: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-self: stretch;
-        padding-top: 0;
+        flex-shrink: 0;
+        text-align: center;
       }
 
       .card--front .brand h2 {
@@ -174,14 +169,23 @@
 
       .card--front .tagline {
         margin: 0;
-        padding-top: 3mm;
+        flex-shrink: 0;
         font-size: 6.5pt;
         line-height: 1.35;
         color: #3d3833;
+        text-align: center;
+        padding: 0 1mm;
+      }
+
+      .card--front .front-qr-middle {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 0;
       }
 
       .card--front .front-col-qr {
-        flex-shrink: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -328,14 +332,16 @@
             <h2>Express</h2>
             <p>Restoran · Jagodina</p>
           </div>
-          <p class="tagline">Brza kuvana jela, domaća kuhinja, ketering i dostava.</p>
         </div>
-        <div class="front-col-qr">
-          <div class="qr-wrap">
-            <img id="qr-front" alt="QR kod ka sajtu" width="200" height="200" />
+        <div class="front-qr-middle">
+          <div class="front-col-qr">
+            <div class="qr-wrap">
+              <img id="qr-front" alt="QR kod ka sajtu" width="200" height="200" />
+            </div>
+            <span class="qr-caption">Skenirajte za sajt</span>
           </div>
-          <span class="qr-caption">Skenirajte za sajt</span>
         </div>
+        <p class="tagline">Brza kuvana jela, domaća kuhinja, ketering i dostava.</p>
       </article>
     </div>
 
@@ -368,14 +374,16 @@
             <h2>Express</h2>
             <p>Restoran · Jagodina</p>
           </div>
-          <p class="tagline">Brza kuvana jela, domaća kuhinja, ketering i dostava.</p>
         </div>
-        <div class="front-col-qr">
-          <div class="qr-wrap">
-            <img class="qr-img" alt="" width="200" height="200" />
+        <div class="front-qr-middle">
+          <div class="front-col-qr">
+            <div class="qr-wrap">
+              <img class="qr-img" alt="" width="200" height="200" />
+            </div>
+            <span class="qr-caption">Skenirajte za sajt</span>
           </div>
-          <span class="qr-caption">Skenirajte za sajt</span>
         </div>
+        <p class="tagline">Brza kuvana jela, domaća kuhinja, ketering i dostava.</p>
       </article>
     </template>
 
