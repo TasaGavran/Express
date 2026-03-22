@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="sr-Latn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Express restoran Jagodina — brza kuvana jela, domaća kuhinja, ketering i dostava. Maksima Gorkog 2."
+    />
+    <title>Express restoran — Jagodina</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              express: {
+                dark: "#14110e",
+                panel: "#1f1a16",
+                gold: "#c9a227",
+                "gold-dim": "#a68520",
+                cream: "#f7f2ea",
+              },
+            },
+            fontFamily: {
+              display: ['"Cormorant Garamond"', "Georgia", "serif"],
+              sans: ['"Source Sans 3"', "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="antialiased font-sans text-stone-800" x-data="{ mobileOpen: false }">
+    <!-- Zamenite slike u folderu /images/ istim imenima fajlova (hero.jpg, dish1–3, g1–g6). -->
+    <div class="bg-express-panel text-express-cream/90 text-sm">
+      <div
+        class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-6 gap-y-2 px-4 py-2.5 sm:justify-between"
+      >
+        <p class="text-center sm:text-left">
+          <span class="text-express-gold">Tel:</span>
+          <a href="tel:+38135250250" class="hover:text-white">035 250 250</a>
+          <span class="mx-2 text-express-gold/40">|</span>
+          <span class="text-express-gold">E-pošta:</span>
+          <a href="mailto:expressrestoran@gmail.com" class="hover:text-white"
+            >expressrestoran@gmail.com</a
+          >
+        </p>
+        <ul class="flex gap-4 text-lg">
+          <li>
+            <a
+              href="https://www.google.com/maps/place/Express+restoran+Jagodina/@43.9799435,21.2595547,17z"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-express-gold"
+              aria-label="Google mape"
+              >📍</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <header class="sticky top-0 z-50 border-b border-stone-200/80 bg-express-cream/95 backdrop-blur">
+      <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
+        <a href="#" class="font-display text-2xl font-semibold tracking-tight text-express-dark md:text-3xl">
+          Express
+        </a>
+        <nav class="hidden items-center gap-8 font-semibold text-stone-700 md:flex">
+          <a href="#o-nama" class="hover:text-express-gold-dim transition-colors">O nama</a>
+          <a href="#meni" class="hover:text-express-gold-dim transition-colors">Meni</a>
+          <a href="#galerija" class="hover:text-express-gold-dim transition-colors">Galerija</a>
+          <a href="#utisci" class="hover:text-express-gold-dim transition-colors">Utisci</a>
+          <a href="#zasto" class="hover:text-express-gold-dim transition-colors">Zašto mi</a>
+          <a href="#kontakt" class="hover:text-express-gold-dim transition-colors">Kontakt</a>
+        </nav>
+        <button
+          type="button"
+          class="rounded-md border border-stone-300 px-3 py-2 text-sm font-semibold text-express-dark md:hidden"
+          @click="mobileOpen = !mobileOpen"
+          :aria-expanded="mobileOpen"
+          aria-controls="mobile-nav"
+        >
+          Meni
+        </button>
+      </div>
+      <div
+        id="mobile-nav"
+        class="border-t border-stone-200 bg-express-cream px-4 py-4 md:hidden"
+        x-show="mobileOpen"
+        x-transition
+        x-cloak
+      >
+        <nav class="flex flex-col gap-3 font-semibold text-stone-800">
+          <a href="#o-nama" @click="mobileOpen = false">O nama</a>
+          <a href="#meni" @click="mobileOpen = false">Meni</a>
+          <a href="#galerija" @click="mobileOpen = false">Galerija</a>
+          <a href="#utisci" @click="mobileOpen = false">Utisci</a>
+          <a href="#zasto" @click="mobileOpen = false">Zašto mi</a>
+          <a href="#kontakt" @click="mobileOpen = false">Kontakt</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero (Fellini-style baner + naslov) -->
+      <section class="relative min-h-[58vh] overflow-hidden md:min-h-[70vh]">
+        <img
+          src="images/hero.jpg"
+          alt="Express restoran — enterijer ili jelo"
+          class="absolute inset-0 h-full w-full object-cover"
+          width="1920"
+          height="1080"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="hero-gradient absolute inset-0"></div>
+        <div class="relative flex min-h-[58vh] flex-col justify-end px-4 pb-16 pt-32 md:min-h-[70vh] md:pb-24">
+          <div class="mx-auto w-full max-w-6xl">
+            <p class="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-express-gold">
+              Jagodina · Maksima Gorkog 2
+            </p>
+            <h1 class="font-display text-4xl font-semibold leading-tight text-white md:text-6xl lg:text-7xl">
+              Dobrodošli u <em class="text-express-gold not-italic">Express</em> restoran
+            </h1>
+            <p class="mt-6 max-w-2xl text-lg text-white/90 md:text-xl">
+              Brza kuvana jela, domaća kuhinja i kompletni obroci po pristupačnim cenama — za ručak, pauzu ili
+              poneti.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a
+                href="tel:+38135250250"
+                class="inline-flex items-center justify-center bg-express-gold px-6 py-3 font-semibold text-express-dark transition hover:bg-amber-400"
+              >
+                Pozovite nas
+              </a>
+              <a
+                href="#meni"
+                class="inline-flex items-center justify-center border border-white/60 px-6 py-3 font-semibold text-white hover:bg-white/10"
+              >
+                Pogledajte ponudu
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="o-nama" class="mx-auto max-w-6xl px-4 py-16 md:py-24">
+        <div class="grid gap-12 md:grid-cols-2 md:items-center">
+          <div>
+            <h2 class="font-display text-3xl font-semibold text-express-dark md:text-4xl">O nama</h2>
+            <p class="mt-4 text-lg leading-relaxed text-stone-600">
+              Express u Jagodini je mesto gde tradicionalna domaća jela i brza usluga idu zajedno. Tu smo za
+              zaposlene na pauzi, studente, penzionere, turiste i sve koji žele ukusan obrok bez čekanja.
+            </p>
+            <p class="mt-4 leading-relaxed text-stone-600">
+              U ponudi su kuvana jela, specijaliteti od mesa, supe i čorbe, riba, salate, vegetarijanske opcije,
+              kao i slatki program. Moguć je obrok u lokalu, <strong>poneti</strong>, <strong>dostava</strong> i
+              <strong>ketering</strong> za firme i proslave.
+            </p>
+          </div>
+          <div class="img-fallback overflow-hidden rounded-sm shadow-xl">
+            <img
+              src="images/o-nama.jpg"
+              alt="Atmosfera u restoranu Express"
+              class="h-full w-full object-cover"
+              width="800"
+              height="600"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Meni (umesto Fellini „Our Coffee“) -->
+      <section id="meni" class="bg-white py-16 md:py-24">
+        <div class="mx-auto max-w-6xl px-4">
+          <div class="text-center">
+            <h2 class="font-display text-3xl font-semibold text-express-dark md:text-4xl">Preporuke sa menija</h2>
+            <p class="mx-auto mt-3 max-w-2xl text-stone-600">
+              Svakodnevno sveže pripremamo jela po kućnoj recepturi — zamenite ove slike fotografijama vaših
+              specijaliteta (<code class="text-sm">images/dish1.jpg</code> …).
+            </p>
+          </div>
+          <div class="mt-12 grid gap-8 md:grid-cols-3">
+            <article class="group border border-stone-100 bg-express-cream/40 shadow-sm transition hover:shadow-md">
+              <div class="img-fallback overflow-hidden">
+                <img
+                  src="images/dish1.jpg"
+                  alt="Jelo sa menija — domaća kuhinja"
+                  class="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
+                  width="640"
+                  height="420"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="font-display text-xl font-semibold text-express-dark">Domaća kuvana jela</h3>
+                <p class="mt-2 text-stone-600">
+                  Pasulj, gulaš, musaka, punjene paprike i druga jela po danu — pitajte osoblje za današnji meni.
+                </p>
+              </div>
+            </article>
+            <article class="group border border-stone-100 bg-express-cream/40 shadow-sm transition hover:shadow-md">
+              <div class="img-fallback overflow-hidden">
+                <img
+                  src="images/dish2.jpg"
+                  alt="Specijalitet od mesa ili ribe"
+                  class="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
+                  width="640"
+                  height="420"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="font-display text-xl font-semibold text-express-dark">Meso i riba</h3>
+                <p class="mt-2 text-stone-600">
+                  Specijaliteti od mesa i riblji obroci za one koji žele nešto „posebno“ tokom dana.
+                </p>
+              </div>
+            </article>
+            <article class="group border border-stone-100 bg-express-cream/40 shadow-sm transition hover:shadow-md">
+              <div class="img-fallback overflow-hidden">
+                <img
+                  src="images/dish3.jpg"
+                  alt="Salata, prilog ili dezert"
+                  class="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
+                  width="640"
+                  height="420"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="font-display text-xl font-semibold text-express-dark">Salate i slatki program</h3>
+                <p class="mt-2 text-stone-600">
+                  Osvežavajuće salate, prilozi i domaće poslastice — idealno uz glavno jelo ili uz kafu.
+                </p>
+              </div>
+            </article>
+          </div>
+          <p class="mt-10 text-center text-stone-500">
+            Za kompletan meni i dnevnu ponudu pozovite
+            <a href="tel:+38135250250" class="font-semibold text-express-gold-dim hover:underline">035 250 250</a>
+            ili nas posetite uživo.
+          </p>
+        </div>
+      </section>
+
+      <!-- Galerija (Fellini grid, vaše slike) -->
+      <section id="galerija" class="bg-express-dark py-16 text-express-cream md:py-24">
+        <div class="mx-auto max-w-6xl px-4">
+          <h2 class="text-center font-display text-3xl font-semibold md:text-4xl">Galerija</h2>
+          <p class="mx-auto mt-3 max-w-2xl text-center text-white/70">
+            Fotografije prostora i hrane — stavite ih kao <code class="text-express-gold/90">images/g1.jpg</code> …
+            <code class="text-express-gold/90">g6.jpg</code>.
+          </p>
+          <div class="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
+            <div class="gallery-item overflow-hidden rounded-sm">
+              <img src="images/g1.jpg" alt="Galerija 1" class="h-full w-full object-cover" loading="lazy" />
+            </div>
+            <div class="gallery-item overflow-hidden rounded-sm">
+              <img src="images/g2.jpg" alt="Galerija 2" class="h-full w-full object-cover" loading="lazy" />
+            </div>
+            <div class="gallery-item overflow-hidden rounded-sm">
+              <img src="images/g3.jpg" alt="Galerija 3" class="h-full w-full object-cover" loading="lazy" />
+            </div>
+            <div class="gallery-item overflow-hidden rounded-sm">
+              <img src="images/g4.jpg" alt="Galerija 4" class="h-full w-full object-cover" loading="lazy" />
+            </div>
+            <div class="gallery-item overflow-hidden rounded-sm">
+              <img src="images/g5.jpg" alt="Galerija 5" class="h-full w-full object-cover" loading="lazy" />
+            </div>
+            <div class="gallery-item overflow-hidden rounded-sm">
+              <img src="images/g6.jpg" alt="Galerija 6" class="h-full w-full object-cover" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Utisci (inspirisano Fellini „What Our Clients Say“, sadržaj za lokal) -->
+      <section id="utisci" class="py-16 md:py-24">
+        <div class="mx-auto max-w-6xl px-4">
+          <h2 class="text-center font-display text-3xl font-semibold text-express-dark md:text-4xl">
+            Šta gosti kažu
+          </h2>
+          <p class="mx-auto mt-3 max-w-2xl text-center text-stone-600">
+            Utisci su sažeti u duhu onoga što posetioci najčešće traže kod brze kuvane hrane u gradu — proverite i
+            aktuelne recenzije na Google mapama.
+          </p>
+          <div class="mt-12 grid gap-8 md:grid-cols-3">
+            <blockquote class="border-l-4 border-express-gold bg-white p-6 shadow-sm">
+              <p class="text-stone-700">
+                „Ručak za pauzu — brzo, toplo i po meri. Često uzmem komplet i vratim se poslu bez čekanja.“
+              </p>
+              <footer class="mt-4 text-sm font-semibold text-express-dark">— gost, Jagodina</footer>
+            </blockquote>
+            <blockquote class="border-l-4 border-express-gold bg-white p-6 shadow-sm">
+              <p class="text-stone-700">
+                „Ponuda kao kod kuće. Ima sve od pasulja do salate, a i ketering za kancelariju smo koristili.“
+              </p>
+              <footer class="mt-4 text-sm font-semibold text-express-dark">— gost, lokalna firma</footer>
+            </blockquote>
+            <blockquote class="border-l-4 border-express-gold bg-white p-6 shadow-sm">
+              <p class="text-stone-700">
+                „Lokacija pored centra, lako parkiranje u okolini. Poručim na poneti kad žurim — uvek u roku.“
+              </p>
+              <footer class="mt-4 text-sm font-semibold text-express-dark">— gost, redovan posetilac</footer>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <!-- Zašto mi (Fellini „Our Features“, prilagođeno restoranu — bez kafe bara) -->
+      <section id="zasto" class="border-t border-stone-200 bg-stone-50 py-16 md:py-24">
+        <div class="mx-auto max-w-6xl px-4 text-center">
+          <h2 class="font-display text-3xl font-semibold text-express-dark md:text-4xl">Zašto Express</h2>
+          <p class="mx-auto mt-3 max-w-2xl text-stone-600">
+            Ono što nas izdvaja u svakodnevnoj užurbane rutini — brzina, ukus i pouzdanost.
+          </p>
+          <div class="mt-12 grid gap-10 text-left md:grid-cols-2 lg:grid-cols-4">
+            <div class="rounded-sm bg-white p-6 shadow-sm">
+              <div class="text-3xl" aria-hidden="true">⚡</div>
+              <h3 class="mt-3 font-display text-xl font-semibold text-express-dark">Brza usluga</h3>
+              <p class="mt-2 text-stone-600">
+                Obrok spreman za nekoliko minuta — kao što i ime kaže, express za zaposlene i one u žurbi.
+              </p>
+            </div>
+            <div class="rounded-sm bg-white p-6 shadow-sm">
+              <div class="text-3xl" aria-hidden="true">🍲</div>
+              <h3 class="mt-3 font-display text-xl font-semibold text-express-dark">Domaća kuhinja</h3>
+              <p class="mt-2 text-stone-600">
+                Kuvana jela, supe, specijaliteti i salate — širok izbor za različite ukuse.
+              </p>
+            </div>
+            <div class="rounded-sm bg-white p-6 shadow-sm">
+              <div class="text-3xl" aria-hidden="true">🚗</div>
+              <h3 class="mt-3 font-display text-xl font-semibold text-express-dark">Dostava i poneti</h3>
+              <p class="mt-2 text-stone-600">
+                Dostava za kancelarije i kućne adrese, kao i mogućnost da uzmete jelo sa sobom.
+              </p>
+            </div>
+            <div class="rounded-sm bg-white p-6 shadow-sm">
+              <div class="text-3xl" aria-hidden="true">🎉</div>
+              <h3 class="mt-3 font-display text-xl font-semibold text-express-dark">Ketering</h3>
+              <p class="mt-2 text-stone-600">
+                Organizujemo obroke za grupe, poslovne ručkove i manje proslave — dogovor po želji.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="kontakt" class="bg-express-panel py-16 text-express-cream md:py-24">
+        <div class="mx-auto grid max-w-6xl gap-12 px-4 lg:grid-cols-2">
+          <div>
+            <h2 class="font-display text-3xl font-semibold md:text-4xl">Kontakt i radno vreme</h2>
+            <p class="mt-4 text-white/80">
+              <strong class="text-white">Adresa:</strong><br />
+              Maksima Gorkog 2, 35000 Jagodina, Srbija<br />
+              (u centru grada, u blizini poznatih lokala i parkinga)
+            </p>
+            <p class="mt-4 text-white/80">
+              <strong class="text-white">Telefon:</strong>
+              <a href="tel:+38135250250" class="ml-1 text-express-gold hover:underline">035 250 250</a><br />
+              <strong class="text-white">E-pošta:</strong>
+              <a href="mailto:expressrestoran@gmail.com" class="ml-1 text-express-gold hover:underline"
+                >expressrestoran@gmail.com</a
+              >
+            </p>
+            <p class="mt-6 text-white/80">
+              <strong class="text-white">Radno vreme (orientaciono):</strong><br />
+              Svaki dan <span class="text-express-gold">08:00 – 20:00</span> — za praznike ili izmene pozovite nas.
+            </p>
+          </div>
+          <div class="overflow-hidden rounded-sm shadow-lg">
+            <iframe
+              title="Express restoran na mapi"
+              class="h-72 w-full border-0 md:h-full md:min-h-[320px]"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=43.9799435,21.2595547&hl=sr&z=17&output=embed"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-express-dark py-10 text-center text-sm text-white/60">
+      <p>© <span id="year"></span> Express restoran, Jagodina. Sva prava zadržana.</p>
+    </footer>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
+    <script defer src="js/main.js"></script>
+    <style>
+      [x-cloak] {
+        display: none !important;
+      }
+    </style>
+  </body>
+</html>

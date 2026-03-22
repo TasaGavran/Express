@@ -1,0 +1,41 @@
+/* Dopuna uz Tailwind: tipografija i sitni detalji u duhu „premium“ restoranskog sajta */
+
+:root {
+  --express-dark: #14110e;
+  --express-panel: #1f1a16;
+  --express-gold: #c9a227;
+  --express-gold-dim: #a68520;
+  --express-cream: #f7f2ea;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  color: #2c2824;
+  background: var(--express-cream);
+}
+
+.font-display {
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
+
+.hero-gradient {
+  background: linear-gradient(
+    120deg,
+    rgba(20, 17, 14, 0.92) 0%,
+    rgba(20, 17, 14, 0.55) 45%,
+    rgba(20, 17, 14, 0.35) 100%
+  );
+}
+
+.img-fallback {
+  min-height: 12rem;
+  background: linear-gradient(145deg, #2a241e 0%, #1a1512 100%);
+}
+
+.gallery-item {
+  aspect-ratio: 4 / 3;
+}
