@@ -24,6 +24,7 @@ Build može biti samo `npx wrangler deploy` (bez `npm run build`).
 U folderu `print/`:
 
 - `vizit-prednja.svg` — prednja strana (85 × 55 mm)
-- `vizit-zadnja.svg` — zadnja strana sa QR ka [https://express.opetmilosdinic.workers.dev/](https://express.opetmilosdinic.workers.dev/)
+- `vizit-zadnja.svg` — zadnja strana (kontakt + QR)
+- **`qr.png`** — QR ka [https://express.opetmilosdinic.workers.dev/](https://express.opetmilosdinic.workers.dev/) (mora ostati **u istom folderu** kao `vizit-zadnja.svg`, inače se QR ne vidi)
 
-QR na `vizit-zadnja.svg` je ugrađen kao PNG (base64) — radi i bez interneta. Ako zamenite domen sajta, generišite novi QR za isti URL i zamenite `href="data:image/png;base64,..."` u tom fajlu.
+Za pregled uvek otvaraj fajlove iz istog direktorijuma (npr. ceo `print/` u VS Code-u). Ako menjaš domen, zameni `qr.png` novom slikom istog imena.

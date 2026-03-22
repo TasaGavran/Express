@@ -1,25 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="85mm" height="55mm" viewBox="0 0 85 55">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="85mm" height="55mm" viewBox="0 0 85 55">
   <title>Express restoran - zadnja strana vizit kartice</title>
+  <desc>QR slika je u fajlu qr.png u istom folderu kao ovaj SVG.</desc>
   <rect width="85" height="55" fill="#f7f2ea"/>
-  <text x="4" y="10" fill="#14110e" font-family="Georgia, serif" font-size="6.2" font-weight="700">Express</text>
+  <text x="4" y="10" fill="#14110e" font-family="Georgia, Times New Roman, serif" font-size="6.2" font-weight="700">Express</text>
+  <!-- Relativna putanja: qr.png mora biti u istom folderu -->
   <image
-    x="60"
-    y="3.5"
-    width="20"
-    height="20"
+    x="59"
+    y="3"
+    width="21"
+    height="21"
     preserveAspectRatio="xMidYMid meet"
-    href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsAQMAAABDsxw2AAAABlBMVEX///8AAABVwtN+AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAB70lEQVRoge2aS46DMBBEG80iyxzBR+FocDSOwhFYZoHocXfZxtF8pFhjMovqBSHmJYuUXG6XI8L6DzUq6iGiiw1My90Hto/0xIeJNWKr/8rhMcT3Bsyj7jYQMQhA7ArsZnoEE8sli/Ltg84iEZs0foTYX2Cugl3jLDhkWom9A7P77XbUjkTsOqw4UsRkMEfS4zfjIvYKpihgUMEcKfywOhPrgT2XY1Bv+/KQWDcMYi3BX7boTnNcl21duEcvmsMjTRxizVjydL9a2xMBs3qrVU5HItYPE+s1k1jVDmuWL0WsH+bNj12PvBFAuSNNWqYMsSZMYDp1h5+aHzFH8i0tsd7Y6BuquOD6LIiSiVjzkyKdVc5OlVg/zAFbHY4k3qSIdHQv98SasexIMjyp4B1+ihSI9ccUkRrE8mDBWlCv2pGIdcXWW548udesMnx7mJMfYq0YeksDDneh0ueX7yDWH7NC8+MHVRiAF53GRawzpum4sG5B/QbRMrFmrFRedks4LzlSINYdGxVl6XGGLVg7j0i8iPXFVn8JSBvqfZaJZQ+fD1yIvYi56QScw5b0+BvjInYNtiA9FhxReYavxC7HsCLojjU6lc8lYq1YciQ7jVXvLTGA09gzZCbWE0uSALPmc8Tfb1y4c59FrCfGen99Agvo0RmLeh/8AAAAAElFTkSuQmCC"
+    xlink:href="qr.png"
+    href="qr.png"
   />
-  <text x="70" y="25" text-anchor="middle" fill="#666666" font-family="Arial, sans-serif" font-size="2.2">Sajt</text>
-  <text x="4" y="31" fill="#14110e" font-family="Arial, sans-serif" font-size="2.85" font-weight="600">Adresa</text>
-  <text x="16" y="31" fill="#2c2824" font-family="Arial, sans-serif" font-size="2.85">Maksima Gorkog 2, 35000 Jagodina</text>
-  <line x1="4" y1="33.2" x2="81" y2="33.2" stroke="#14110e" stroke-opacity="0.1" stroke-width="0.12"/>
-  <text x="4" y="37.5" fill="#14110e" font-family="Arial, sans-serif" font-size="2.85" font-weight="600">Tel.</text>
-  <text x="16" y="37.5" fill="#2c2824" font-family="Arial, sans-serif" font-size="2.85">035 250 250</text>
-  <line x1="4" y1="39.7" x2="81" y2="39.7" stroke="#14110e" stroke-opacity="0.1" stroke-width="0.12"/>
-  <text x="4" y="44" fill="#14110e" font-family="Arial, sans-serif" font-size="2.85" font-weight="600">E-po&#353;ta</text>
-  <text x="16" y="44" fill="#2c2824" font-family="Arial, sans-serif" font-size="2.55">expressrestoran@gmail.com</text>
-  <line x1="4" y1="48.5" x2="81" y2="48.5" stroke="#c9a227" stroke-opacity="0.5" stroke-width="0.35"/>
-  <text x="42.5" y="52.8" text-anchor="middle" fill="#8a7019" font-family="Arial, sans-serif" font-size="2.35" font-weight="600" letter-spacing="0.1em">KUVANA JELA ù ZA PONETI ù DOSTAVA</text>
+  <text x="69.5" y="26" text-anchor="middle" fill="#666666" font-family="Arial, Helvetica, sans-serif" font-size="2.3">Sajt</text>
+  <text x="4" y="31.5" fill="#14110e" font-family="Arial, Helvetica, sans-serif" font-size="2.9" font-weight="600">Adresa</text>
+  <text x="15.5" y="31.5" fill="#2c2824" font-family="Arial, Helvetica, sans-serif" font-size="2.9">Maksima Gorkog 2, 35000 Jagodina</text>
+  <line x1="4" y1="33.5" x2="81" y2="33.5" stroke="#14110e" stroke-opacity="0.12" stroke-width="0.15"/>
+  <text x="4" y="38" fill="#14110e" font-family="Arial, Helvetica, sans-serif" font-size="2.9" font-weight="600">Tel.</text>
+  <text x="15.5" y="38" fill="#2c2824" font-family="Arial, Helvetica, sans-serif" font-size="2.9">035 250 250</text>
+  <line x1="4" y1="40" x2="81" y2="40" stroke="#14110e" stroke-opacity="0.12" stroke-width="0.15"/>
+  <text x="4" y="44.5" fill="#14110e" font-family="Arial, Helvetica, sans-serif" font-size="2.9" font-weight="600">E-po&#353;ta</text>
+  <text x="15.5" y="44.5" fill="#2c2824" font-family="Arial, Helvetica, sans-serif" font-size="2.65">expressrestoran@gmail.com</text>
+  <line x1="4" y1="48.5" x2="81" y2="48.5" stroke="#c9a227" stroke-opacity="0.55" stroke-width="0.4"/>
+  <text
+    x="42.5"
+    y="53"
+    text-anchor="middle"
+    fill="#8a7019"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="2.4"
+    font-weight="600"
+    letter-spacing="0.08em"
+  >KUVANA JELA &#183; ZA PONETI &#183; DOSTAVA</text>
 </svg>
