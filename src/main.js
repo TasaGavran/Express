@@ -9,6 +9,13 @@ const FB_URL =
 const GOOGLE_REVIEWS_URL =
   "https://www.google.com/maps/place/Express+restoran+Jagodina/@43.9799435,21.2595547,17z";
 
+/** Fajlovi iz `public/` (ispravne putanje i za `base: './'`). */
+function publicAsset(path) {
+  const prefix = import.meta.env.BASE_URL || "/";
+  const clean = path.startsWith("/") ? path.slice(1) : path;
+  return `${prefix}${clean}`;
+}
+
 function preloadImage(src) {
   return new Promise((resolve) => {
     const img = new Image();
@@ -19,7 +26,9 @@ function preloadImage(src) {
 }
 
 async function resolveHeroBackgrounds() {
-  const candidates = ["/images/hero-1.jpg", "/images/hero-2.jpg", "/images/hero-3.jpg"];
+  const candidates = ["images/hero-1.jpg", "images/hero-2.jpg", "images/hero-3.jpg"].map(
+    publicAsset,
+  );
   const resolved = [];
   for (const c of candidates) {
     const ok = await preloadImage(c);
@@ -30,15 +39,17 @@ async function resolveHeroBackgrounds() {
 
 async function gallerySrc(i) {
   const n = String(i).padStart(2, "0");
-  const jpg = `/images/gallery-${n}.jpg`;
-  const webp = `/images/gallery-${n}.webp`;
+  const jpg = publicAsset(`images/gallery-${n}.jpg`);
+  const webp = publicAsset(`images/gallery-${n}.webp`);
   if (await preloadImage(jpg)) return jpg;
   if (await preloadImage(webp)) return webp;
   return null;
 }
 
 function mount(html) {
-  document.querySelector("#app").innerHTML = html;
+  const root = document.querySelector("#app");
+  if (!root) return;
+  root.innerHTML = html;
 }
 
 const pageHtml = `
@@ -236,7 +247,7 @@ const pageHtml = `
         </p>
         <div class="features-grid">
           <div class="feature">
-            <div class="feature__icon" data-feature-bg="/images/feature-kuhinja.jpg" aria-hidden="true">
+            <div class="feature__icon" data-feature-bg="images/feature-kuhinja.jpg" aria-hidden="true">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M4 10h16v2H4v-2zm0-4h10v2H4V6zm0 8h12v2H4v-2z" fill="#8B2942"/>
               </svg>
@@ -245,7 +256,7 @@ const pageHtml = `
             <p>Kuvana jela i specijaliteti sa fokusom na ukus i raznovrsnost ponude.</p>
           </div>
           <div class="feature">
-            <div class="feature__icon" data-feature-bg="/images/feature-dostava.jpg" aria-hidden="true">
+            <div class="feature__icon" data-feature-bg="images/feature-dostava.jpg" aria-hidden="true">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M5 18h14v2H5v-2zm11.5-9.5 2 2-4.5 4.5H10v-3L16.5 8.5z" fill="#8B2942"/>
               </svg>
@@ -254,7 +265,7 @@ const pageHtml = `
             <p>Kućna dostava svakog dana od 8 do 20 časova, u što kraćem roku do kancelarije ili stana.</p>
           </div>
           <div class="feature">
-            <div class="feature__icon" data-feature-bg="/images/feature-porodica.jpg" aria-hidden="true">
+            <div class="feature__icon" data-feature-bg="images/feature-porodica.jpg" aria-hidden="true">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-7 8v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1H5z" fill="#8B2942"/>
               </svg>
@@ -263,7 +274,7 @@ const pageHtml = `
             <p>Prijatna atmosfera za porodicu, poslovne ručkove i brzo zasitanje gladi.</p>
           </div>
           <div class="feature">
-            <div class="feature__icon" data-feature-bg="/images/feature-brzina.jpg" aria-hidden="true">
+            <div class="feature__icon" data-feature-bg="images/feature-brzina.jpg" aria-hidden="true">
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M13 3v9h8v2h-8v9h-2v-9H3v-2h8V3h2z" fill="#8B2942"/>
               </svg>
@@ -334,23 +345,27 @@ const pageHtml = `
 async function init() {
   mount(pageHtml);
 
-  document.getElementById("year").textContent = String(new Date().getFullYear());
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   const navToggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".nav");
   navToggle?.addEventListener("click", () => {
+    if (!nav) return;
     const open = nav.classList.toggle("is-open");
     navToggle.setAttribute("aria-expanded", open ? "true" : "false");
   });
-  nav.querySelectorAll("a").forEach((a) => {
+  nav?.querySelectorAll("a").forEach((a) => {
     a.addEventListener("click", () => {
-      nav.classList.remove("is-open");
+      nav?.classList.remove("is-open");
       navToggle?.setAttribute("aria-expanded", "false");
     });
   });
 
   const heroSlides = document.getElementById("hero-slides");
   const heroDots = document.getElementById("hero-dots");
+  if (!heroSlides || !heroDots) return;
+
   const bgs = await resolveHeroBackgrounds();
 
   if (bgs.length === 0) {
@@ -390,13 +405,17 @@ async function init() {
   }
 
   const cta = document.getElementById("cta-bg");
-  const bannerOk = await preloadImage("/images/banner-kuhinja.jpg");
-  if (bannerOk) {
-    cta.classList.remove("cta-banner__bg--fallback");
-    cta.style.backgroundImage = `url('${bannerOk}')`;
+  if (cta) {
+    const bannerOk = await preloadImage(publicAsset("images/banner-kuhinja.jpg"));
+    if (bannerOk) {
+      cta.classList.remove("cta-banner__bg--fallback");
+      cta.style.backgroundImage = `url('${bannerOk}')`;
+    }
   }
 
   const galleryRoot = document.getElementById("gallery-root");
+  if (!galleryRoot) return;
+
   for (let i = 1; i <= 6; i += 1) {
     const src = await gallerySrc(i);
     const fig = document.createElement("figure");
@@ -420,7 +439,7 @@ async function init() {
 
   document.querySelectorAll("[data-feature-bg]").forEach(async (el) => {
     const src = el.getAttribute("data-feature-bg");
-    const ok = src ? await preloadImage(src) : null;
+    const ok = src ? await preloadImage(publicAsset(src)) : null;
     if (ok) {
       el.innerHTML = "";
       const img = document.createElement("img");
@@ -431,4 +450,10 @@ async function init() {
   });
 }
 
-init();
+init().catch((err) => {
+  console.error(err);
+  const app = document.querySelector("#app");
+  if (app) {
+    app.innerHTML = `<p style="padding:2rem;font-family:system-ui,sans-serif;color:#8b2942">Greška pri učitavanju sajta. Otvorite konzolu (F12) ili pokrenite <code>npm run dev</code>.</p>`;
+  }
+});

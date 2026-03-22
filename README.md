@@ -9,6 +9,8 @@ npm install
 npm run dev
 ```
 
+**Ne otvarajte `dist/index.html` dvoklikom** u Exploreru — JavaScript moduli često ne rade preko `file://`, pa je stranica bela. Uvek koristite `npm run dev` ili `npm run preview`.
+
 ## Produkcijski build
 
 ```bash

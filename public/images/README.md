@@ -1,6 +1,15 @@
 # Fotografije za sajt
 
-Stavite svoje slike u ovaj folder sa **tačnim imenima** ispod. Sve slike zamenjuju vizuale sa starog sajta (nema spoljašnjih stock fotografija).
+## Automatski iz foldera `Images` (pored `Express/`)
+
+Pri `npm run dev` i `npm run build` Vite kopira slike iz **`PlaywrightMCP/Images/`** ovde, prema mapiranju u **`vite.config.js`** (`IMAGE_MAP`).  
+Ako promenite slike u tom folderu, ponovo pokrenite dev server ili build.
+
+Možete i ručno staviti fajlove direktno u **`public/images/`** sa imenima ispod (onda će ih Git i Cloudflare sigurno videti).
+
+---
+
+Stavite svoje slike sa **ovim imenima** (ili koristite mapiranje iz `vite.config.js`). Sve slike zamenjuju vizuale sa starog sajta (nema spoljašnjih stock fotografija).
 
 ## Hero (rotacija na početnoj)
 

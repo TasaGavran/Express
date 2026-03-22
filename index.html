@@ -17,7 +17,30 @@
     />
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <p
+        class="app-boot"
+        style="
+          margin: 0;
+          padding: 2rem;
+          font-family: system-ui, sans-serif;
+          color: #2a211e;
+          background: #faf7f3;
+          min-height: 100vh;
+        "
+      >
+        Učitavanje sajta… Ako ekran ostane prazan, otvorite stranicu preko servera:
+        <code style="background: #eee; padding: 0.2rem 0.4rem">npm run dev</code>
+        ili
+        <code style="background: #eee; padding: 0.2rem 0.4rem">npm run preview</code>
+        — ne otvarajte <code>dist/index.html</code> dvoklikom iz foldera.
+      </p>
+      <noscript>
+        <p style="padding: 2rem; font-family: system-ui, sans-serif">
+          Potreban je uključen JavaScript da bi sajt radio.
+        </p>
+      </noscript>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
