@@ -124,13 +124,13 @@
       }
 
       .card--front {
-        padding: 6mm 5mm 3.5mm 5mm;
+        padding: 6mm 5mm 4mm 5mm;
         padding-top: 7mm;
         display: flex;
         flex-direction: column;
         align-items: stretch;
         justify-content: space-between;
-        gap: 1mm;
+        gap: 2mm;
       }
 
       .card--front::before {
@@ -144,27 +144,65 @@
       }
 
       .card--front .front-col-text {
-        flex-shrink: 0;
-        text-align: center;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 0;
       }
 
-      .card--front .brand h2 {
+      .card--front .brand--row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 3.5mm;
+      }
+
+      .card--front .brand--row h2 {
         margin: 0;
         font-family: "Cormorant Garamond", Georgia, serif;
-        font-size: 15pt;
+        font-size: 22pt;
         font-weight: 700;
         letter-spacing: 0.02em;
         line-height: 1;
         color: var(--ink);
       }
 
-      .card--front .brand p {
-        margin: 1mm 0 0;
-        font-size: 7.5pt;
+      .card--front .brand-divider {
+        width: 0.5pt;
+        align-self: stretch;
+        min-height: 14mm;
+        background: linear-gradient(180deg, transparent, var(--gold), var(--gold-dim), transparent);
+        opacity: 0.85;
+      }
+
+      .card--front .brand-restoran {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.5mm;
+        text-align: left;
+      }
+
+      .card--front .brand-restoran .restoran-word {
+        margin: 0;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 14pt;
         font-weight: 600;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        letter-spacing: 0.14em;
         color: var(--gold-dim);
+        line-height: 1;
+      }
+
+      .card--front .brand-restoran .restoran-city {
+        margin: 0;
+        font-size: 7pt;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #5c5349;
       }
 
       .card--front .tagline {
@@ -174,93 +212,94 @@
         line-height: 1.35;
         color: #3d3833;
         text-align: center;
-        padding: 0 1mm;
+        padding: 0 2mm;
       }
 
-      .card--front .front-qr-middle {
-        flex: 1;
+      .card--back {
+        padding: 4mm 4mm 4mm 4.5mm;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column;
+      }
+
+      .card--back .back-inner {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 3mm;
+        flex: 1;
         min-height: 0;
       }
 
-      .card--front .front-col-qr {
+      .card--back .back-text {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5mm;
+      }
+
+      .card--back .back-qr {
+        flex-shrink: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 23mm;
+        width: 19mm;
+        padding-top: 0.5mm;
       }
 
-      .card--front .qr-wrap {
-        width: 22mm;
-        height: 22mm;
+      .card--back .qr-wrap {
+        width: 17mm;
+        height: 17mm;
         background: #fff;
-        padding: 1mm;
+        padding: 0.6mm;
         border: 0.5pt solid rgba(20, 17, 14, 0.12);
       }
 
-      .card--front .qr-wrap img {
+      .card--back .qr-wrap img {
         display: block;
         width: 100%;
         height: 100%;
         object-fit: contain;
       }
 
-      .card--front .qr-caption {
-        font-size: 5.5pt;
+      .card--back .qr-caption {
+        font-size: 5pt;
         text-align: center;
         color: #666;
-        margin-top: 0.8mm;
-        line-height: 1.2;
-      }
-
-      .card--back {
-        padding: 5mm 5.5mm;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-
-      .card--back::after {
-        content: "";
-        position: absolute;
-        bottom: 4mm;
-        left: 5.5mm;
-        right: 5.5mm;
-        height: 0.35pt;
-        background: linear-gradient(90deg, transparent, var(--gold), transparent);
-        opacity: 0.6;
+        margin-top: 0.6mm;
+        line-height: 1.15;
       }
 
       .card--back h3 {
         margin: 0;
         font-family: "Cormorant Garamond", Georgia, serif;
-        font-size: 12pt;
+        font-size: 11pt;
         font-weight: 700;
         color: var(--ink);
       }
 
       .card--back .lines {
-        font-size: 7.5pt;
-        line-height: 1.55;
+        font-size: 6.5pt;
+        line-height: 1.45;
         color: #2c2824;
       }
 
       .card--back .lines strong {
         font-weight: 600;
         color: var(--ink);
-        min-width: 8mm;
+        min-width: 7mm;
         display: inline-block;
       }
 
       .card--back .footer-note {
-        font-size: 6pt;
+        font-size: 5.5pt;
         color: var(--gold-dim);
         text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-top: auto;
-        padding-top: 2mm;
+        letter-spacing: 0.08em;
+        margin: 1.5mm 0 0;
+        padding-top: 1mm;
+        border-top: 0.25pt solid rgba(201, 162, 39, 0.35);
       }
 
       /* Štampa: 2 kolone × 5 redova na A4 */
@@ -313,8 +352,9 @@
     <div class="toolbar no-print">
       <h1>Express — vizit kartice</h1>
       <p>
-        Unesite tačan URL vašeg sajta (npr. Cloudflare Pages). QR se osvežava automatski. Štampajte prvo list
-        „prednja“, zatim okrenite papir i štampajte „zadnja“ za dupleks, ili koristite jednostrano.
+        Unesite tačan URL vašeg sajta (npr. Cloudflare Pages). QR je na <strong>zadnjoj</strong> strani kartice.
+        Štampajte prvo list „prednja“, zatim okrenite papir i štampajte „zadnja“ za dupleks, ili koristite
+        jednostrano.
       </p>
       <label for="site-url">Adresa sajta za QR kod</label>
       <input id="site-url" type="url" placeholder="https://express-restoran.pages.dev" spellcheck="false" />
@@ -328,17 +368,13 @@
     <div class="preview-row no-print">
       <article class="card card--front" id="sample-front">
         <div class="front-col-text">
-          <div class="brand">
+          <div class="brand--row">
             <h2>Express</h2>
-            <p>Restoran · Jagodina</p>
-          </div>
-        </div>
-        <div class="front-qr-middle">
-          <div class="front-col-qr">
-            <div class="qr-wrap">
-              <img id="qr-front" alt="QR kod ka sajtu" width="200" height="200" />
+            <span class="brand-divider" aria-hidden="true"></span>
+            <div class="brand-restoran">
+              <p class="restoran-word">Restoran</p>
+              <p class="restoran-city">Jagodina</p>
             </div>
-            <span class="qr-caption">Skenirajte za sajt</span>
           </div>
         </div>
         <p class="tagline">Brza kuvana jela, domaća kuhinja, ketering i dostava.</p>
@@ -348,13 +384,23 @@
     <p class="preview-label no-print">Pregled — zadnja strana</p>
     <div class="preview-row no-print">
       <article class="card card--back">
-        <h3>Express</h3>
-        <div class="lines">
-          <div><strong>Adresa</strong> Maksima Gorkog 2, 35000 Jagodina</div>
-          <div><strong>Tel.</strong> 035 250 250</div>
-          <div><strong>E-pošta</strong> expressrestoran@gmail.com</div>
+        <div class="back-inner">
+          <div class="back-text">
+            <h3>Express</h3>
+            <div class="lines">
+              <div><strong>Adresa</strong> Maksima Gorkog 2, 35000 Jagodina</div>
+              <div><strong>Tel.</strong> 035 250 250</div>
+              <div><strong>E-pošta</strong> expressrestoran@gmail.com</div>
+            </div>
+            <p class="footer-note">Kuvana jela · Poneti · Dostava</p>
+          </div>
+          <div class="back-qr">
+            <div class="qr-wrap">
+              <img id="qr-back" class="qr-img" alt="QR kod ka sajtu" width="200" height="200" />
+            </div>
+            <span class="qr-caption">Sajt</span>
+          </div>
         </div>
-        <p class="footer-note">Kuvana jela · Poneti · Dostava</p>
       </article>
     </div>
 
@@ -370,17 +416,13 @@
     <template id="tpl-front">
       <article class="card card--front">
         <div class="front-col-text">
-          <div class="brand">
+          <div class="brand--row">
             <h2>Express</h2>
-            <p>Restoran · Jagodina</p>
-          </div>
-        </div>
-        <div class="front-qr-middle">
-          <div class="front-col-qr">
-            <div class="qr-wrap">
-              <img class="qr-img" alt="" width="200" height="200" />
+            <span class="brand-divider" aria-hidden="true"></span>
+            <div class="brand-restoran">
+              <p class="restoran-word">Restoran</p>
+              <p class="restoran-city">Jagodina</p>
             </div>
-            <span class="qr-caption">Skenirajte za sajt</span>
           </div>
         </div>
         <p class="tagline">Brza kuvana jela, domaća kuhinja, ketering i dostava.</p>
@@ -389,13 +431,23 @@
 
     <template id="tpl-back">
       <article class="card card--back">
-        <h3>Express</h3>
-        <div class="lines">
-          <div><strong>Adresa</strong> Maksima Gorkog 2, 35000 Jagodina</div>
-          <div><strong>Tel.</strong> 035 250 250</div>
-          <div><strong>E-pošta</strong> expressrestoran@gmail.com</div>
+        <div class="back-inner">
+          <div class="back-text">
+            <h3>Express</h3>
+            <div class="lines">
+              <div><strong>Adresa</strong> Maksima Gorkog 2, 35000 Jagodina</div>
+              <div><strong>Tel.</strong> 035 250 250</div>
+              <div><strong>E-pošta</strong> expressrestoran@gmail.com</div>
+            </div>
+            <p class="footer-note">Kuvana jela · Poneti · Dostava</p>
+          </div>
+          <div class="back-qr">
+            <div class="qr-wrap">
+              <img class="qr-img" alt="" width="200" height="200" />
+            </div>
+            <span class="qr-caption">Sajt</span>
+          </div>
         </div>
-        <p class="footer-note">Kuvana jela · Poneti · Dostava</p>
       </article>
     </template>
 
@@ -403,7 +455,6 @@
       (function () {
         var DEFAULT_URL = "https://example.com";
         var input = document.getElementById("site-url");
-        var qrFront = document.getElementById("qr-front");
         var gridFront = document.getElementById("grid-front");
         var gridBack = document.getElementById("grid-back");
         var tplFront = document.getElementById("tpl-front");
@@ -412,15 +463,14 @@
         function qrSrc(url) {
           var enc = encodeURIComponent(url.trim() || DEFAULT_URL);
           return (
-            "https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&color=14110e&bgcolor=ffffff&data=" +
+            "https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=6&color=14110e&bgcolor=ffffff&data=" +
             enc
           );
         }
 
         function applyQr(url) {
           var src = qrSrc(url);
-          qrFront.src = src;
-          gridFront.querySelectorAll(".qr-img").forEach(function (img) {
+          document.querySelectorAll("img.qr-img").forEach(function (img) {
             img.src = src;
           });
         }
