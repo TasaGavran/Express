@@ -216,27 +216,41 @@
       }
 
       .card--back {
-        padding: 4mm 4mm 4mm 4.5mm;
+        padding: 3.5mm 4mm 3.5mm 4mm;
         display: flex;
         flex-direction: column;
+        height: 100%;
       }
 
       .card--back .back-inner {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: space-between;
-        gap: 3mm;
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+        gap: 2mm;
         min-height: 0;
       }
 
-      .card--back .back-text {
+      .card--back .back-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        gap: 3mm;
+        flex-shrink: 0;
+      }
+
+      .card--back .back-header h3 {
+        margin: 0;
         flex: 1;
         min-width: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 1.5mm;
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-size: 13pt;
+        font-weight: 700;
+        color: var(--ink);
+        line-height: 1;
       }
 
       .card--back .back-qr {
@@ -244,15 +258,13 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 19mm;
-        padding-top: 0.5mm;
       }
 
       .card--back .qr-wrap {
-        width: 17mm;
-        height: 17mm;
+        width: 20mm;
+        height: 20mm;
         background: #fff;
-        padding: 0.6mm;
+        padding: 0.7mm;
         border: 0.5pt solid rgba(20, 17, 14, 0.12);
       }
 
@@ -264,42 +276,57 @@
       }
 
       .card--back .qr-caption {
-        font-size: 5pt;
+        font-size: 5.5pt;
         text-align: center;
         color: #666;
-        margin-top: 0.6mm;
+        margin-top: 0.5mm;
         line-height: 1.15;
       }
 
-      .card--back h3 {
-        margin: 0;
-        font-family: "Cormorant Garamond", Georgia, serif;
-        font-size: 11pt;
-        font-weight: 700;
-        color: var(--ink);
+      .card--back .lines {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2.2mm;
+        width: 100%;
+        font-size: 7.5pt;
+        line-height: 1.5;
+        color: #2c2824;
+        padding: 1mm 0;
       }
 
-      .card--back .lines {
-        font-size: 6.5pt;
-        line-height: 1.45;
-        color: #2c2824;
+      .card--back .lines > div {
+        width: 100%;
+        padding-bottom: 2mm;
+        border-bottom: 0.35pt solid rgba(20, 17, 14, 0.1);
+      }
+
+      .card--back .lines > div:last-of-type {
+        border-bottom: none;
+        padding-bottom: 0;
       }
 
       .card--back .lines strong {
         font-weight: 600;
         color: var(--ink);
-        min-width: 7mm;
+        min-width: 11mm;
         display: inline-block;
+        margin-right: 1.5mm;
+        vertical-align: top;
       }
 
       .card--back .footer-note {
-        font-size: 5.5pt;
+        flex-shrink: 0;
+        width: 100%;
+        margin: 0;
+        font-size: 6pt;
         color: var(--gold-dim);
         text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin: 1.5mm 0 0;
-        padding-top: 1mm;
-        border-top: 0.25pt solid rgba(201, 162, 39, 0.35);
+        letter-spacing: 0.1em;
+        text-align: center;
+        padding: 2mm 1mm 0;
+        border-top: 0.4pt solid rgba(201, 162, 39, 0.45);
       }
 
       /* Štampa: 2 kolone × 5 redova na A4 */
@@ -385,21 +412,21 @@
     <div class="preview-row no-print">
       <article class="card card--back">
         <div class="back-inner">
-          <div class="back-text">
+          <div class="back-header">
             <h3>Express</h3>
-            <div class="lines">
-              <div><strong>Adresa</strong> Maksima Gorkog 2, 35000 Jagodina</div>
-              <div><strong>Tel.</strong> 035 250 250</div>
-              <div><strong>E-pošta</strong> expressrestoran@gmail.com</div>
+            <div class="back-qr">
+              <div class="qr-wrap">
+                <img id="qr-back" class="qr-img" alt="QR kod ka sajtu" width="200" height="200" />
+              </div>
+              <span class="qr-caption">Sajt</span>
             </div>
-            <p class="footer-note">Kuvana jela · Poneti · Dostava</p>
           </div>
-          <div class="back-qr">
-            <div class="qr-wrap">
-              <img id="qr-back" class="qr-img" alt="QR kod ka sajtu" width="200" height="200" />
-            </div>
-            <span class="qr-caption">Sajt</span>
+          <div class="lines">
+            <div><strong>Adresa</strong> Maksima Gorkog 2, 35000 Jagodina</div>
+            <div><strong>Tel.</strong> 035 250 250</div>
+            <div><strong>E-pošta</strong> expressrestoran@gmail.com</div>
           </div>
+          <p class="footer-note">Kuvana jela · Poneti · Dostava</p>
         </div>
       </article>
     </div>
@@ -432,21 +459,21 @@
     <template id="tpl-back">
       <article class="card card--back">
         <div class="back-inner">
-          <div class="back-text">
+          <div class="back-header">
             <h3>Express</h3>
-            <div class="lines">
-              <div><strong>Adresa</strong> Maksima Gorkog 2, 35000 Jagodina</div>
-              <div><strong>Tel.</strong> 035 250 250</div>
-              <div><strong>E-pošta</strong> expressrestoran@gmail.com</div>
+            <div class="back-qr">
+              <div class="qr-wrap">
+                <img class="qr-img" alt="" width="200" height="200" />
+              </div>
+              <span class="qr-caption">Sajt</span>
             </div>
-            <p class="footer-note">Kuvana jela · Poneti · Dostava</p>
           </div>
-          <div class="back-qr">
-            <div class="qr-wrap">
-              <img class="qr-img" alt="" width="200" height="200" />
-            </div>
-            <span class="qr-caption">Sajt</span>
+          <div class="lines">
+            <div><strong>Adresa</strong> Maksima Gorkog 2, 35000 Jagodina</div>
+            <div><strong>Tel.</strong> 035 250 250</div>
+            <div><strong>E-pošta</strong> expressrestoran@gmail.com</div>
           </div>
+          <p class="footer-note">Kuvana jela · Poneti · Dostava</p>
         </div>
       </article>
     </template>
